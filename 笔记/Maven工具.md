@@ -1,9 +1,9 @@
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710725958637-11b67a75-8e60-4ebb-bfc4-a2ac2a15076d.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=uf03e9ac5&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=ub232915b-479f-417e-a15c-6fcabc35af1&title=&width=1400)
 # 什么是Maven
 ## Maven的概念
-Maven 是自动化构建工具。
+Maven 是一个一键式的自动化构建工具。
 
-Maven 是 Apache 软件基金会组织维护的一款自动化构建工具，专注服务于 Java 平台的项目构建和依赖管理。Maven 这个单词的本意是：专家，内行。
+Maven 是 Apache 软件基金会组织维护的一款自动化构建工具，**专注服务于 Java 平台的项目构建和依赖管理**。Maven 这个单词的本意是：专家，内行。
 
 Maven 是目前最流行的自动化构建工具，对于生产环境下多框架、多模块整合开发有重要作用，Maven 是一款在大型项目开发过程中不可或缺的重要工具。
 
@@ -11,10 +11,10 @@ Maven 是目前最流行的自动化构建工具，对于生产环境下多框�
 ## 为什么要使用Maven
 我们知道，项目开发不仅仅是写写代码而已，期间会伴随着各种必不可少的事情要做，例如：
 
-1. 我们需要引用各种 jar 包，尤其是比较大的工程，引用的 jar 包往往有几十个乃至上百个，每个都要到不同的官网去下载，而且每次用到的 jar 包，都需要手动引入工程目录，而且经常遇到各种让人抓狂的 jar 包冲突，版本冲突，Maven可以自动下载jar包及依赖包添加到项目中，大大减轻了工作负担。
-2. 我们开发的 Java 文件，都是需要将它编译成二进制字节码文件。好在这项工作可以由各种集成开发工具帮我们完成，Eclipse、IDEA 等都可以将代码即时编译。但有时候我们需要多个模块同时编译，就必须要借助于Maven工具了。
-3. 每个项目或模块开发过程中都会有 bug，因此写完了代码，我们还要写一些单元测试，然后一个个的运行来检验代码质量，Maven提供了专门的测试插件来实施测试。
-4. 再优雅的代码也是要出来卖的。我们后面还需要把代码与各种配置文件、资源整合到一起，定型打包，如果是 web项目，还需要将之发布到服务器进行调用，这些都可以通过Maven轻松搞定。
+1. 我们需要引用各种 jar 包，尤其是比较大的工程，引用的 jar 包往往有几十个乃至上百个，每个都要到不同的官网去下载，而且每次用到的 jar 包，都需要手动引入工程目录，而且经常遇到各种让人抓狂的 jar 包冲突，版本冲突，**Maven可以自动下载jar包及依赖包添加到项目中**，大大减轻了工作负担。
+2. 我们开发的 Java 文件，都是需要将它编译成二进制字节码文件。好在这项工作可以由各种集成开发工具帮我们完成，Eclipse、IDEA 等都可以将代码即时编译。但有时候我们需要**多个模块同时编译**，就必须要借助于Maven工具了。
+3. 每个项目或模块开发过程中都会有 bug，因此写完了代码，我们还要写一些单元测试，然后一个个的运行来检验代码质量，**Maven提供了专门的测试插件来实施测试。**
+4. 再优雅的代码也是要出来卖的。我们后面还需要**把代码与各种配置文件、资源整合到一起**，定型打包，如果是 web项目，还需要将之发布到服务器进行调用，这些都可以通过Maven轻松搞定。
 
 总之，Maven是项目开发必须不可少的工具。
 
@@ -124,12 +124,12 @@ pom.xml文件示例：
 
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726007252-65fcbed3-f1f5-46e1-903f-88d180a5f3fa.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=u73548aa3&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=u936c3c44-7e05-4cff-a5b7-e88040ec00a&title=&width=1400)
 ## 什么是约定的目录结构
-会有预先约定好的目录结构，必须要遵循的规范，所有的Maven项目都依照这个规范。主要的目的是将项目的源码文件，测试代码，资源文件完全分开，便于项目管理和扩展。
+会有**预先约定好的目录结构，必须要遵循的规范，所有的Maven项目都依照这个规范**。主要的目的是将项目的源码文件，测试代码，资源文件完全分开，便于项目管理和扩展。
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710225813568-68f6bedb-6772-43b7-a474-7cff8fcd2c15.png#averageHue=%23faf9f9&clientId=u2edacb95-b01a-4&from=paste&height=496&id=u2fc4f7a9&originHeight=744&originWidth=1806&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=67081&status=done&style=none&taskId=u105d78b0-d8b9-4453-a5ab-5acfdf72d06&title=&width=1204)
 
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726017457-ced53f44-89a4-4cc9-a2e5-cf0924842332.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=u63a1a121&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=u3980a5f1-5e30-4b11-ba33-6518d25d555&title=&width=1400)
 ## 什么是坐标GAV
-也称为gav定位。使用三个标签来唯一定位jar资源。项目的唯一的名称，创建项目时定义gav名称，引用项目时使用gav名称。相当于项目的身份证号。
+也称为gav定位。使用三个标签来唯一定位jar资源。项目的唯一的名称，创建项目时定义gav名称，引用项目时使用gav名称。相当于项目的身份证号。坐标就是资源的唯一定位。创建项目时使用坐标拟定一个名称，访问资源时通过坐标找到资源
 
 1. groupId:	组织名称,一般是公司域名的倒写  com.bjpowernode
 2. artifactId:	项目名称   springmvc_006_ssm
@@ -153,7 +153,7 @@ pom.xml文件示例：
 
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726023181-08c3d098-59ee-47dd-9043-7de64500d492.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=uf44d5ced&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=ufae05d8f-d484-4096-8242-04d3324b970&title=&width=1400)
 ## 什么是仓库
-存放jar包的位置 。Maven中所有的jar包都在仓库中。仓库分为本地仓库和远程仓库。
+存放jar包的位置 。**Maven中所有的jar包都在仓库中**。**仓库分为本地仓库和远程仓库。**
 
 我们依赖的jar包它从哪儿获取呢？有同学说已经安装了，在它的安装包里啊，大家可以看一下maven下载下来才8M，我们需要的jar包有时候都几百兆甚至几个G，它从哪儿弄去呢？ 其实，maven有仓库的概念。在Maven中，任何一个依赖、插件或者项目构建的输出，都可以称之为构件。Maven 核心程序仅仅定义了自动化构建项目的生命周期，但具体的构建工作是由特定的构件完成的。而且为了提高构建的效率和构件复用，maven把所有的构件统一存储在某一个位置，这个位置就叫做仓库。
 
@@ -175,7 +175,7 @@ pom.xml文件示例：
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710230075376-f389cdfa-9d95-4cce-9771-e717cae4dd48.png#averageHue=%23fcfcf8&clientId=u2edacb95-b01a-4&from=paste&height=135&id=ud87b2d1b&originHeight=202&originWidth=949&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=768309&status=done&style=none&taskId=uea684a8d-8510-4571-a895-448d2954317&title=&width=632.6666666666666)
 
 **程序员常用的一个仓库:**
-[**http://mvnrepository.com/**](http://mvnrepository.com/)**   **
+[**http://mvnrepository.com/**](http://mvnrepository.com/)
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710230122267-f7fc65cb-47fd-49e7-a5e4-dd78391a329a.png#averageHue=%23f8f7f7&clientId=u2edacb95-b01a-4&from=paste&height=649&id=u73398b2b&originHeight=974&originWidth=1852&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=323216&status=done&style=none&taskId=uf1df6884-54ab-4866-8d5a-bf25a13c375&title=&width=1234.6666666666667)
 
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726037141-3564a72e-1cb2-4551-9aec-2b9d75bfc033.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=u6850271f&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=ub6bdfa1d-a713-4f37-bc59-766b479478a&title=&width=1400)
@@ -905,7 +905,7 @@ Maven 在设计时，借鉴了 Java 面向对象中的继承思想，提出了 P
 使用 Maven 聚合功能对项目进行构建时，需要在该项目中额外创建一个的聚合模块，然后通过这个模块构建整个项目的所有模块。聚合模块仅仅是帮助聚合其他模块的工具，其本身并无任何实质内容，因此聚合模块中只有一个 POM 文件，不包含 src 等目录。
 
 与父模块相似，聚合模块的打包方式（packaging）也是 pom，用户可以在其 POM 中通过 modules 下的 module 子元素来添加需要聚合的模块的目录路径。父模块的 pom.xml 文件的 <modules> 把子模块聚集起来. 
- 
+
 项目结构：
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710519085353-11678e58-1ffe-44da-9273-3cc1155c6641.png#averageHue=%23738b62&clientId=u025dd473-afbf-4&from=paste&height=507&id=u20dbc733&originHeight=760&originWidth=1830&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=210256&status=done&style=none&taskId=u885d2d10-90be-4ff1-83d2-afbc1d60e7b&title=&width=1220)
 
@@ -1056,7 +1056,7 @@ Maven 私服其实并不是 Maven 的核心概念，它仅仅是一种衍生出�
 ## Maven仓库管理器Nexus
 ### 什么是Nexus
 Nexus 是 Sonatype 公司发布的一款仓库（Repository）管理软件，常用来搭建 Maven 私服，所以也有人将 Nexus 称为“Maven仓库管理器”。 Sonatype Nexus 是当前最流行，使用最广泛的 Maven 仓库管理器。Nexus 分为开源版和专业版，其中开源版足以满足大部分 Maven 用户的需求。
-  
+
 ### Nexus仓库的类型
 Nexus默认内置了很多仓库，这些仓库可以划分为3种类型，每种类型的仓库用于存放特定的jar包，具体说明如下：
 
