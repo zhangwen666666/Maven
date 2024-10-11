@@ -1,0 +1,284 @@
+1.什么是Maven工具
+  它是一个一键式的自动化的构建工具.
+  首先,Maven可以自动的帮助我们下载jar包.其次可以进行多个项目同时的编译运行.还有在开发的过程中需要进行测试运行,Maven提供了自动化的测试插件帮助我们进行项目测试功能的运行.最后项目是需要进行资源文件,配置文件的整合,来进行打包和部署,Maven可以轻松搞定.
+
+2.项目构建的过程
+  1)清理:将上次编译的结果删除,为下一次编译做准备.  
+  2)编译:将.java的文件编译生成.class的文件.
+  3)测试:针对项目中的关键点进行测试,确保项目在迭代开发的过程中关键点的正确性.
+  4)报告:在每一次测试后以标签的格式记录和展示测试结果.
+  5)打包:将项目生成jar包或war包.
+  6)安装:将jar包安装到本地仓库.
+  7)部署:将jar包部署到私服上.
+3.Maven的核心概念 
+  1)POM
+    POM(Project Object Model)项目对象模型.
+    它是Maven的核心组件,是以pom.xml文件形式存在.其中包含了项目的相关属性,添加的依赖,引用的插件等.
+  2)约定的目录结构
+    所有Maven项目必须要遵循的目录规范.将Java源码和测试代码拆分.便于项目的管理和扩展.
+    springmvc_006
+    	src
+    		main          ====>所有的java源码文件和相关的配置文件
+    			java			===>所有的java源码文件
+    				com.bjpowernode.controller
+    								.service
+    								.mapper
+    								.pojo
+    			resources		===>所有的配置文件
+    				SqlMapConfig.xml
+    				applicationContext_mapper.xml
+    				applicationContext_service.xml
+    				springmvc.xml
+    				jdbc.properties
+    		test		  ====>所有的测试相关的代码和配置文件
+    			java			===>所有的测试代码
+    			resources		===>所有的测试相关的配置文件
+    	pom.xml
+  3)什么是坐标GAV
+    坐标就是资源的唯一定位。创建项目时使用坐标拟定一个名称，访问资源时通过坐标找到资源。
+    groupid:组织名称，一般公司域名倒写     com.bjpowernode
+    artifactid:项目名称    springmvc_006  
+    version: 版本编号   5.6.8   1.2.3
+
+    表现在仓库，gav是一级一级的目录。
+    
+  4)什么是仓库
+    仓库就是用来存放jar包的。
+    本机存储jar包的位置称为本地仓库。远程存储jar包称远程仓库。
+    A.本地仓库：一定要是一个没有中文的路径下。
+    B.远程仓库：通过局域网或互联网访问的仓库地址。
+
+  5)什么是依赖
+    添加jar包.
+    所有的资源是以gav进行定义的,也是通过gav来添加引用.
+    在<dependencies>大标签中,通过子标签<dependency>,通过gav进行引用.
+
+  6)什么是生命周期
+    它对应项目构建的过程,底层是Maven命令的调用(插件).
+
+  7)什么是插件
+    Maven就是一个插件的框架,插件就是集成化的功能.
+    通过<plugins>大标签,再通过<plugin>子标签进行极简化的添加.
+    常见的插件:comcat插件,编译插件,MyBatis的逆向工程插件.
+
+4.下载Maven工具
+  官网:http://maven.apache.org/
+  下载后解压到一个没有中文的路径下
+  最新版本是: maven-3.9.6
+
+5.配置环境变量
+  配置步骤：
+	1)我的电脑--->右键属性--->高级系统设置--->环境变量--->系统变量
+	2)点新建--->
+	  a. 创建JAVA_HOME环境变量
+	    ⅰ. 变量名:  JAVA_HOME
+	    ⅱ. 变量值:  C:\Program Files\Java\jdk-17
+	  b. 创建MAVEN_HOME环境变量
+	    ⅰ. 变量名:  MAVEN_HOME
+	    ⅱ. 变量值:  D:\apache-maven-3.9.6  (Maven工具所在的目录，bin的上一级目录）    
+	3)点path--->编辑--->新建
+	  a. %JAVA_HOME%\bin
+	  b. %MAVEN_HOME%\bin
+	  c. --->确定--->确定--->确定
+	4) 打开cmd窗口,输入  mvn -v
+	Apache Maven 3.9.6 (c9616018c7a021c1c39be70fb2843d6f5f9b8a1c)
+	Maven home: D:\apache-maven-3.9.6
+	Java version: 17.0.6, vendor: Oracle Corporation, runtime: C:\Program Files\Java\jdk-17
+	Default locale: zh_CN, platform encoding: GBK
+	OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
+	有以上输出则表明配置环境变量成功。
+
+6.Maven工具参数的配置
+  1)配置本地仓库，将注释中53行的代码提取出注释，放置在第55行，设置本地仓库的地址路径。如果已有本地仓库则直接指定地址，如果没有本地仓库则指定一个目录，Maven工具使用后会自动生成目录.
+  2)配置远程仓库,找到</mirrors>结束标签，将以下代码贴在其前面。
+    <!--配置阿里远程仓库-->
+		<mirror>
+		  <id>alimaven</id>
+		  <name>aliyun maven</name>
+		  <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		  <mirrorOf>central</mirrorOf>        
+		</mirror>
+  3)配置JDK属性,在<profiles>标签中进行配置，一定要小心，找到</profiles>结束标签，在其前面配置以下代码。因为在<profiles></profiles>标签中全部是注释，粘到哪里都在注释中，只有找到结束标签</profiles>前才是注释外的，配置才会生效。
+    <profile>
+	  <id>jdk17</id>
+	  <activation>
+	    <activeByDefault>true</activeByDefault>
+	    <jdk>17</jdk>
+	  </activation>
+	  <properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.compiler.source>17</maven.compiler.source>
+	    <maven.compiler.target>17</maven.compiler.target>
+	    <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+	  </properties>
+	</profile>
+	
+7.为Idea2023当前打开的工作区集成maven
+	打开idea2023,具体步骤如下：
+	1) File--->settings--->Build,Execution,Depolyment--->Build Tools--->Maven
+	 Maven home path(Maven工具所在的目录,bin的上一级目录):   D:\apache-maven-3.9.6
+	勾选Override选项
+	User settings file(Maven工具的核心配置文件):  D:\apache-maven-3.9.2\conf\settings.xml
+	Local repository(本地仓库,antlr的上一级目录):  D:\repository
+	2) Maven--->Importing--->配置JDK的版本
+	3) Runner
+	VM Options:-DarchetypeCatalog=internal  (在新建模块时使用本地模板)
+	JRE: 17
+	4) Repositories(刷新本地仓库的索引):  选中本地仓库,点Update
+
+8.为新建项目配置Maven工具
+  1) File--->New Projects Setup--->Settings for New Project
+  2) 同3.2.2的步骤再来一遍
+
+9.基于Maven创建javaSE的项目
+	1) File--->new--->Project--->Empty Project
+	Location:D:\course\10-Maven\code
+	Name:mavenall
+	--->Create
+	2) ctrl+alt+shift+s:打开项目结构窗口
+	Project:设置JDK版本为17
+	3) Modules:
+	+ ---> New Module 
+	Build system: Maven
+	4) Advanced Settings 
+	GroupId:com.bjpowernode
+	ArtifactId:maven_001_javase
+	--->Create
+	5) 观察Sources和Dependcies选项的JDK版本，都为17
+	--->ok
+	6) 补齐目录
+	在test目录上右键--->new Directory--->resouces
+	7) 修改pom.xml文件
+		添加单元测试的依赖
+		<dependencies>
+		  <dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		    <scope>test</scope>
+		  </dependency>
+		</dependencies>
+	8)开发Hello.java类 
+		public class Hello {
+		    //加法运算
+		    public int sum(int num1,int num2){
+		       return num1 + num2;
+		    }
+		    //乘法运算
+		    public int mul(int num1,int num2){
+		        return num1 * num2;
+		    }
+		}
+    9)开发测试类
+    	public class MyTest {
+		/**
+		     * 测试功能由测试方法来实现
+		     * 测试方法的规范
+		     * 1)访问权限是public
+		     * 2)方法没有返回值void
+		     * 3)方法名称自 定义,推荐以test开头
+		     * 4)方法没有参数
+		     * 5)使用@Test注解声明是测试方法
+		     */
+		    @Test
+		    public void testSum(){
+		        Hello  hello = new Hello();
+		        System.out.println(hello.sum(3,6));
+		    }
+		    @Test
+		    public void testMul(){
+		        Hello  hello = new Hello();
+		        System.out.println(hello.mul(3,6));
+		    }
+		}
+		
+10.导入maven项目
+	1) 拷贝一个现有的Maven项目maven_002_javaweb,改名为 maven_002_javawebnew
+	2) 进入到maven_002_javawebnew项目中删除target目录和.gitignore文件
+	3) 打开pom.xml文件,更改artifactId的名称为maven_002_javawebnew.
+	4) ctrl+alt+shift+s:打开项目结构窗口
+		+ --->Import Moudle --->选中要导入的项目---> ok
+		选中  Import module from external model 
+		Maven
+		---> Create ---> ok
+	5) 部署运行测试功能 
+
+11.依赖范围
+	Maven的依赖构件包含一个依赖范围的属性。这个属性描述的是三套classpath的控制，即编译、测试、运行。这说白了就是添加的jar包起作用的范围。maven提供了以下几种依赖范围:compile,test,provided.runtime,system。
+	1)compile:编译依赖范围，如果没有指定，默认使用该依赖范围，对于编译、测试、运行3种classpath都有效。
+	2)test:测试依赖范围，使用此依赖范围的maven依赖，只对编译测试、运行测试的classpath有效，在编译主代码、运行项目时无法使用此类依赖。比如junit，它只有在编译测试代码及运行测试的时候才需要。
+	3)provided:已提供依赖范围。表示项目的运行环境中已经提供了所需要的构件，对于此依赖范围的maven依赖，对于编译源码、编译测试、运行测试中classpath有效，但在运行时无效。比如上面说到的servlet-api，这个在编译和测试的时候需要用到，但是在运行的时候，web容器已经提供了，就不需要maven帮忙引入了。
+	4)runtime:运行时依赖范围，使用此依赖范围的maven依赖，对于测试和运行项目的classpath有效，但在编译时无效，比如jdbc驱动实现，项目代码编译的时候只需要提供JDK提供的JDBC接口，运行的时候才需要具体的jdbc驱动实现。
+	5)system:系统依赖范围，该依赖与3中classpath的关系，和provided依赖范围完全一致。但是，使用system范围的依赖时必须通过systemPath元素显示第指定依赖文件的路径。这种依赖直接依赖于本地路径中的构件，可能每个开发者机器中构件的路径不一致，所以如果使用这种写法，你的机器中可能没有问题，别人的机器中就会有问题，所以建议谨慎使用。
+
+12.依赖范围对依赖传递的影响
+	1) 当间接依赖的范围是 compile 时，与直接依赖的范围一致；
+	2) 当间接依赖的范围是 test 或 provided时，传递性依赖不会被传递；
+	3) 当间接依赖的范围是 runtime 时，传递性依赖的范围与直接依赖的范围一致，但 compile 例外，此时传递性依赖的范围为 runtime。
+
+13.依赖冲突的解决方案
+    1)版本锁定
+    2)短路径优先
+    3)声明优先
+    4)特殊优先
+    5)可选依赖
+    6)排除依赖
+
+14.刷新依赖的8种方式
+    1) 点击M刷新按钮。
+	2) 点Maven窗口的Reload All Maven Projects。
+	3) Build--->ReBuild Project 重新构建项目的同时刷新所有依赖。
+	4) 点击本项目的pom.xml文件--->右键--->Maven--->Reload Project 刷新本项目的依赖。
+	5) 打开pom.xml文件,全选,拷贝,删除,关闭,打开,粘贴.物理刷新pom.xml文件 。
+	6) Invalidate Caches--->全选--->Invalidate and Restart 清空idea的缓存并重启idea刷新依赖。
+	7) 打开本地仓库，搜索last，全选删除,点Maven的刷新全部依赖的按钮。
+	8) 在7的步骤后执行File--->settings--->Build,Execution,Deployment--->Build Tools--->Maven--->Repositories--->选中本地仓库--->update--->ok。
+
+15.指定资源文件的位置 
+    <build>
+        <resources>
+            <resource>
+                <!--指定java目录下的所有路径下的所有文件-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <!--指定resources目录下的所有路径下的所有文件-->
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+16.什么是继承
+   Maven 的依赖传递机制可以一定程度上简化 POM 的配置，但这仅限于存在依赖关系的项目或模块中。当一个项目的多个模块都依赖于相同 jar 包的相同版本，且这些模块之间不存在依赖关系，这就导致同一个依赖需要在多个模块中重复声明，这显然是不可取的，大量的前人经验告诉我们，重复往往意味着更多的劳动和更高的潜在风险。
+   一句话,通过继承可以实现子工程沿用父工程的配置。大大减少重复设置。 
+
+17.什么聚合
+   使用 Maven 聚合功能对项目进行构建时，需要在该项目中额外创建一个的聚合模块，然后通过这个模块构建整个项目的所有模块。聚合模块仅仅是帮助聚合其他模块的工具，其本身并无任何实质内容，因此聚合模块中只有一个 POM 文件，不包含 src 等目录。
+   一句话，聚合就是集中构建项目的。
+
+18.什么是私服
+  Maven 私服是一种特殊的远程仓库，它是架设在局域网内的仓库服务，用来代理位于外部的远程仓库（中央仓库、其他远程公共仓库）。一些无法从外部仓库下载到的构件，也能从本地上传到私服供其他人使用。
+
+19.什么是Nexus
+  Nexus 是 Sonatype 公司发布的一款仓库（Repository）管理软件，常用来搭建 Maven 私服，所以也有人将 Nexus 称为“Maven仓库管理器”。 Sonatype Nexus 是当前最流行，使用最广泛的 Maven 仓库管理器。
+
+20.Nexus的仓库类型
+  Nexus默认内置了很多仓库，这些仓库可以划分为3种类型，每种类型的仓库用于存放特定的jar包，具体说明如下：
+  1) hosted：宿主仓库，部署自己的jar包到这个类型的仓库中，包括Releases和Snapshots两部分，Releases为公司内部发行版本仓库，Snapshots为公司内部测试版本仓库。
+  2) proxy：  代理仓库，用于代理远程的公共仓库，如Maven中央仓库，用户连接私服，私服自动去中央仓库下载Jar包或者插件。
+  3) group：仓库组，用来合并多个hosted/proxy仓库，通常用于配置自己的Maven连接仓库组。当我们下载jar包时，从仓库组中的每个仓库找一遍，找到后下载。
+
+21.Nexus的应用
+  步骤详见讲义.有非常详细的步骤.
+			
+	
+
+
+		  
