@@ -8,7 +8,20 @@
         <option value="$PROJECT_DIR$/maven_02_javaweb/pom.xml" />
         <option value="$PROJECT_DIR$/maven_02_javase/pom.xml" />
         <option value="$PROJECT_DIR$/maven_01_javaweb/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_03_javaweb/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_03_javawebnew/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_parent/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_01/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_02/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_03/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_nexus/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/maven_02/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_03_javaweb/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" project-jdk-name="21" project-jdk-type="JavaSDK">

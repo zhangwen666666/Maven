@@ -24,6 +24,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.zw</groupId>
+      <artifactId>maven_01_javase</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
 
 </project>

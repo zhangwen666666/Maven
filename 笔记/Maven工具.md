@@ -491,7 +491,10 @@ Version:	1.0.0
 
 ctrl+alt+shift+s:打开结构窗口
 点web ---> - --->yes ---> Apply 
+
 + --->web.xml --->ok  --->ok
+
+  ![image-20241012094213345](C:\Users\PC\AppData\Roaming\Typora\typora-user-images\image-20241012094213345.png)
 
 8. 修改jsp页面
 
@@ -546,7 +549,7 @@ Maven的依赖构件包含一个依赖范围的属性。这个属性描述的是
 
 1. compile
 
-编译依赖范围，如果没有指定，默认使用该依赖范围，对于编译、测试、运行3种classpath都有效。
+编译依赖范围，如果没有指定，**默认使用该依赖范围**，对于编译、测试、运行3种classpath都有效。
 ```xml
 <dependencies>
   <dependency>
@@ -560,7 +563,8 @@ Maven的依赖构件包含一个依赖范围的属性。这个属性描述的是
 
 2. test
 
-测试依赖范围，使用此依赖范围的maven依赖，只对编译测试、运行测试的classpath有效，在编译主代码、运行项目时无法使用此类依赖。比如junit，它只有在编译测试代码及运行测试的时候才需要。
+**测试依赖范围**，使用此依赖范围的maven依赖，只对编译测试、运行测试的classpath有效，在编译主代码、运行项目时无法使用此类依赖。比如junit，它只有在编译测试代码及运行测试的时候才需要。
+
 ```xml
 <dependencies>
   <dependency>
@@ -576,7 +580,8 @@ Maven的依赖构件包含一个依赖范围的属性。这个属性描述的是
 
 3. provided
 
-已提供依赖范围。表示项目的运行环境中已经提供了所需要的构件，对于此依赖范围的maven依赖，对于编译源码、编译测试、运行测试中classpath有效，但在运行时无效。比如上面说到的servlet-api，这个在编译和测试的时候需要用到，但是在运行的时候，web容器已经提供了，就不需要maven帮忙引入了。
+**已提供依赖范围**。表示项目的运行环境中已经提供了所需要的构件，对于此依赖范围的maven依赖，对于编译源码、编译测试、运行测试中classpath有效，但在运行时无效。比如上面说到的servlet-api，这个在编译和测试的时候需要用到，但是在运行的时候，web容器已经提供了，就不需要maven帮忙引入了。
+
 ```xml
 <dependencies>
   <dependency>
@@ -590,7 +595,8 @@ Maven的依赖构件包含一个依赖范围的属性。这个属性描述的是
 
 4. runtime
 
-运行时依赖范围，使用此依赖范围的maven依赖，对于测试和运行项目的classpath有效，但在编译时无效，比如jdbc驱动实现，项目代码编译的时候只需要提供JDK提供的JDBC接口，运行的时候才需要具体的jdbc驱动实现。
+**运行时依赖范围**，使用此依赖范围的maven依赖，对于测试和运行项目的classpath有效，但在编译时无效，比如jdbc驱动实现，项目代码编译的时候只需要提供JDK提供的JDBC接口，运行的时候才需要具体的jdbc驱动实现。
+
 ```xml
 <dependencies>
   <dependency>
@@ -604,7 +610,8 @@ Maven的依赖构件包含一个依赖范围的属性。这个属性描述的是
 
 5. system
 
-系统依赖范围，该依赖与3中classpath的关系，和provided依赖范围完全一致。但是，使用system范围的依赖时必须通过systemPath元素显示第指定依赖文件的路径。这种依赖直接依赖于本地路径中的构件，可能每个开发者机器中构件的路径不一致，所以如果使用这种写法，你的机器中可能没有问题，别人的机器中就会有问题，所以建议谨慎使用。
+**系统依赖范围**，该依赖与3中classpath的关系，和provided依赖范围完全一致。但是，使用system范围的依赖时必须通过systemPath元素显示第指定依赖文件的路径。这种依赖直接依赖于本地路径中的构件，可能每个开发者机器中构件的路径不一致，所以如果使用这种写法，你的机器中可能没有问题，别人的机器中就会有问题，所以建议谨慎使用。
+
 ```xml
 <dependencies>
   <dependency>
@@ -659,7 +666,7 @@ Maven可以通过以下途径解决依赖冲突。
 
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710472812417-b7aaabf0-6aed-422b-8af0-c34f9cc6eeaf.png#averageHue=%23616641&clientId=uf8dfabdd-913b-4&from=paste&height=484&id=u4cd8bbd0&originHeight=726&originWidth=1797&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=216624&status=done&style=none&taskId=ub65a5674-fdf4-4a39-85a1-0cb762f6a74&title=&width=1198)
 
-3. 父工程不使用<dependencyManagement>标签，则子工程跟父工程完全保持一致。子工程不需要显示依赖任何jar包。
+3. 父工程不使用<dependencyManagement>标签，则子工程跟父工程完全保持一致。子工程不需要显示依赖任何jar包。(**这种情况子工程会将父工程中所有的依赖都继承下来，有可能子工程并不需要这么多依赖，因此这种方式会导致子工程臃肿，一般采用<dependencyManagement>标签**)
 
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710477128261-8cf15234-7b59-49ce-8b7b-ad886d26c96f.png#averageHue=%23595a40&clientId=u025dd473-afbf-4&from=paste&height=567&id=u21f3da53&originHeight=851&originWidth=1793&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=221919&status=done&style=none&taskId=u36730a68-5767-49e4-a519-8e06e99f79f&title=&width=1195.3333333333333)
 
@@ -725,8 +732,8 @@ maven_03项目可选择是否传递间接依赖junit_4.13，主动权在当前�
 4. 点击本项目的pom.xml文件--->右键--->Maven--->Reload Project 刷新本项目的依赖。
 5. 打开pom.xml文件,全选,拷贝,删除,关闭,打开,粘贴.物理刷新pom.xml文件 。
 6. Invalidate Caches--->全选--->Invalidate and Restart 清空idea的缓存并重启idea刷新依赖。
-7. 打开本地仓库，搜索last，全选删除,点Maven的刷新全部依赖的按钮。
-8. 在7的步骤后执行File--->settings--->Build,Execution,Deployment--->Build Tools--->Maven--->Repositories--->选中本地仓库--->update--->ok。
+7. **打开本地仓库，搜索last，全选删除,点Maven的刷新全部依赖的按钮。**
+8. **在7的步骤后执行File--->settings--->Build,Execution,Deployment--->Build Tools--->Maven--->Repositories--->选中本地仓库--->update--->ok。**
 ##  资源文件的指定
 src/main/java 和 src/test/java 这两个目录中的所有*.java 文件会分别在 comile 和 test-comiple 阶段被编译，编译结果分别放到了 target/classes 和 targe/test-classes 目录中，但是这两个目录中的其他文件(后缀是.properties或.xml等文件)都会被忽略掉(编译后丢失)，如果需要把 src 目录下的除.java之外的文件包放到 target/classes 目录，作为输出的 jar 一部分。需要指定资源文件位置。以下内容放到<build>标签中。简单来说就是在resources目录下的*.properties文件和*.xml文件编译时不丢失,但resources目录外的*.properties文件和*.xml文件会丢失,所以要指定位置,保证编译后文件都在.
 代码示例:
@@ -1206,3 +1213,9 @@ snapshot项目部署
 总结：整个Maven工具的应用就讲完了。其中一二三章是基础应用，四五六章是高级应用，工作时遇到的问题四五六章有解决方案，到时候再看也来得及。
 
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726356059-c0a22862-6b43-476e-bf05-7b2a2d0074ad.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=u091cc52d&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=u09f096b2-1d10-49ab-9445-841fbf7fbe9&title=&width=1400)
+
+## Maven的坑
+
+### 1.缓存文件清理
+
+在本地仓库中将.lastUpdate结尾的文件删除干净，重新搭建。

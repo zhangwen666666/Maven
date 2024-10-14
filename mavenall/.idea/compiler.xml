@@ -6,11 +6,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="maven_02_javase" />
         <module name="maven_02_javaweb" />
+        <module name="maven_03_javawebnew" />
+        <module name="maven_nexus" />
+        <module name="maven_son" />
+        <module name="maven_02_javase" />
         <module name="maven_01_javase" />
         <module name="maven_01_javaweb" />
+        <module name="maven_03" />
+        <module name="maven_02" />
+        <module name="maven_01" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="maven_02_javaweb (1)" target="21" />
+      <module name="maven_02_javaweb (2)" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
