@@ -125,6 +125,9 @@ pom.xml文件示例：
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726007252-65fcbed3-f1f5-46e1-903f-88d180a5f3fa.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=u73548aa3&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=u936c3c44-7e05-4cff-a5b7-e88040ec00a&title=&width=1400)
 ## 什么是约定的目录结构
 会有**预先约定好的目录结构，必须要遵循的规范，所有的Maven项目都依照这个规范**。主要的目的是将项目的源码文件，测试代码，资源文件完全分开，便于项目管理和扩展。
+
+**放在resources目录下的文件就相当于放在了类的根路径下**
+
 ![image.png](https://cdn.nlark.com/yuque/0/2024/png/42995594/1710225813568-68f6bedb-6772-43b7-a474-7cff8fcd2c15.png#averageHue=%23faf9f9&clientId=u2edacb95-b01a-4&from=paste&height=496&id=u2fc4f7a9&originHeight=744&originWidth=1806&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=67081&status=done&style=none&taskId=u105d78b0-d8b9-4453-a5ab-5acfdf72d06&title=&width=1204)
 
 ![标头.jpg](https://cdn.nlark.com/yuque/0/2024/jpeg/42995594/1710726017457-ced53f44-89a4-4cc9-a2e5-cf0924842332.jpeg#averageHue=%23f9f8f8&clientId=u1450a208-3265-4&from=paste&height=78&id=u63a1a121&originHeight=78&originWidth=1400&originalType=binary&ratio=1&rotation=0&showTitle=false&size=5764&status=done&style=none&taskId=u3980a5f1-5e30-4b11-ba33-6518d25d555&title=&width=1400)
